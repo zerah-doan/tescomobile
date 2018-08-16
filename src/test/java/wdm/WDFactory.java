@@ -69,9 +69,9 @@ public class WDFactory {
     }
 
     /**
-     * get Config class for setting
+     * get ConfigUtil class for setting
      *
-     * @return Config
+     * @return ConfigUtil
      */
     public static Config getConfig() {
         return WebDriverManager.config();
