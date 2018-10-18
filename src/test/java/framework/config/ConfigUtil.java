@@ -1,9 +1,4 @@
-package config;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+package framework.config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,10 +12,10 @@ import java.util.stream.Collectors;
 
 public class ConfigUtil {
 
-    private static final String CONFIG_FOLDER = ".\\src\\test\\java\\config";
+    private static final String CONFIG_FOLDER = ".\\src\\test\\java\\framework.config";
     private static final String CONFIG_FILE_EXT = ".properties";
 
-    private static Queue<Properties> envQueue;
+    public static Queue<Properties> envQueue;
     private static ThreadLocal<Properties> propTL = new ThreadLocal<>();
 
 
@@ -44,52 +39,18 @@ public class ConfigUtil {
         return Arrays.stream(listOfFiles).filter(e -> e.getName().contains(CONFIG_FILE_EXT)).collect(Collectors.toList());
     }
 
-    public static Properties getProp() {
+    public static String getProp(String propKey) {
         if (propTL.get() == null) {
             propTL.set(envQueue.poll());
         }
-        return propTL.get();
+        return propTL.get().getProperty(propKey);
     }
 
-    public static void returnProp(Properties prop) {
-        envQueue.offer(propTL.get());
-    }
-
-    @BeforeClass
-    public void beforeClass() {
-        System.out.println("bef");
-        loadEnvInfoToQueue();
-    }
-
-
-    @BeforeMethod
-    public void beforeMethod() {
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        returnProp(null);
-    }
-
-    @Test
-    public void aaa() throws Exception {
-        Thread.sleep(5000);
-        System.out.println(getProp().getProperty("env"));
-
-    }
-
-    @Test
-    public void bbb() throws Exception {
-        System.out.println(getProp().getProperty("env"));
-    }
-
-    @Test
-    public void ccc() throws Exception {
-        System.out.println(getProp().getProperty("env"));
-    }
-
-    @Test
-    public void ddd() throws Exception {
-        System.out.println(getProp().getProperty("env"));
+    public static void returnProp() {
+        if (propTL != null) {
+            System.out.println("return " + propTL.get().getProperty("env"));
+            envQueue.offer(propTL.get());
+            propTL.remove();
+        }
     }
 }

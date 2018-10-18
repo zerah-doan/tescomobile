@@ -1,14 +1,14 @@
-package report.listeners;
+package framework.report.listeners;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import report.entities.ResultManager;
-import report.entities.TestResult;
-import report.enums.Status;
-import report.senders.ElasticSender;
+import framework.report.entities.ResultManager;
+import framework.report.entities.TestResult;
+import framework.report.enums.Status;
+import framework.report.senders.ElasticSender;
 
 import java.util.concurrent.TimeUnit;
 

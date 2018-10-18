@@ -1,4 +1,4 @@
-package tests;
+package suite;
 
 import io.github.bonigarcia.wdm.Architecture;
 import org.openqa.selenium.By;
@@ -7,16 +7,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import report.listeners.ExecutionListener;
-import wdm.Browser;
-import wdm.WDFactory;
-import wdm.WDManager;
+import framework.report.listeners.ExecutionListener;
+import framework.wdm.Browser;
+import framework.wdm.WDFactory;
+import framework.wdm.WDManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 @Listeners(ExecutionListener.class)
-public class SampleTest {
+public class KibanaTest {
 
     public void waitForElement(By by) {
         WDManager.getWDWait().until(ExpectedConditions.elementToBeClickable(by));

@@ -1,7 +1,7 @@
-package report.entities;
+package framework.report.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import report.enums.Status;
+import framework.report.enums.Status;
 
 import java.util.Arrays;
 import java.util.List;

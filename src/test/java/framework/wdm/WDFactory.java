@@ -1,4 +1,4 @@
-package wdm;
+package framework.wdm;
 
 import io.github.bonigarcia.wdm.Config;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -19,6 +19,8 @@ import java.net.URL;
  * Generate WD
  */
 public class WDFactory {
+
+
     /**
      * initialize a browser
      *
@@ -27,6 +29,10 @@ public class WDFactory {
      */
     public static WebDriver initBrowser(final Browser browserType) {
         return initBrowser(browserType, null);
+    }
+
+    public static WebDriver initBrowser(final String browserName) {
+        return initBrowser(Browser.getBrowserByName(browserName), null);
     }
 
     /**
@@ -55,6 +61,10 @@ public class WDFactory {
                 break;
         }
         return webDriver;
+    }
+
+    public static <T extends MutableCapabilities> WebDriver initBrowser(final String browserName, final T options) {
+        return initBrowser(Browser.getBrowserByName(browserName), options);
     }
 
     /**

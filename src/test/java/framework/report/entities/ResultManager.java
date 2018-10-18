@@ -1,4 +1,4 @@
-package report.entities;
+package framework.report.entities;
 
 public class ResultManager {
     private static ThreadLocal<TestResult> resultThreadLocal = new ThreadLocal<>();
