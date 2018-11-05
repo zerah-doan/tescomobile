@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Manage WD instances
  */
-public class WDManager {
+public class WdManager {
 
     /**
      * ThreadLocal helps manage WD instances among threads
@@ -22,7 +22,7 @@ public class WDManager {
      *
      * @return WD in current thread
      */
-    public static WebDriver getWD() {
+    public static WebDriver get() {
         return wdm.get();
     }
 
@@ -31,7 +31,7 @@ public class WDManager {
      *
      * @return WD wait in current thread
      */
-    public static WebDriverWait getWDWait() {
+    public static WebDriverWait getWait() {
         return waitManager.get();
     }
 
@@ -40,7 +40,7 @@ public class WDManager {
      *
      * @param driver
      */
-    public static void setWD(final WebDriver driver) {
+    public static void set(final WebDriver driver) {
         if (wdm.get() != null) {
             dismissWD();
         }
@@ -52,7 +52,7 @@ public class WDManager {
      * Close and remove WD from current thread
      */
     public static void dismissWD() {
-        getWD().quit();
+        get().quit();
         wdm.remove();
     }
 }

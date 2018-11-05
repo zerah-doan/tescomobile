@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ConfigUtil {
 
-    private static final String CONFIG_FOLDER = ".\\src\\test\\java\\framework.config";
+    private static final String CONFIG_FOLDER = ".\\src\\test\\java\\framework\\config";
     private static final String CONFIG_FILE_EXT = ".properties";
 
     public static Queue<Properties> envQueue;

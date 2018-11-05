@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import framework.report.listeners.ExecutionListener;
 import framework.wdm.Browser;
 import framework.wdm.WDFactory;
-import framework.wdm.WDManager;
+import framework.wdm.WdManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,25 +19,25 @@ import java.net.URL;
 public class KibanaTest {
 
     public void waitForElement(By by) {
-        WDManager.getWDWait().until(ExpectedConditions.elementToBeClickable(by));
+        WdManager.getWait().until(ExpectedConditions.elementToBeClickable(by));
     }
 
     public void type(By by, String txt) {
         waitForElement(by);
-        WDManager.getWD().findElement(by).sendKeys(txt);
+        WdManager.get().findElement(by).sendKeys(txt);
     }
 
     public void click(By by) {
         waitForElement(by);
-        WDManager.getWD().findElement(by).click();
+        WdManager.get().findElement(by).click();
     }
 
     @Test(description = "Test Google")
     public void testGoogle() {
         WDFactory.getConfig().setArchitecture(Architecture.X32);
-        WDManager.setWD(WDFactory.initBrowser(Browser.IE));
-        WDManager.getWD().get("https://google.com");
-        System.out.println(WDManager.getWD().getTitle());
+        WdManager.set(WDFactory.initBrowser(Browser.IE));
+        WdManager.get().get("https://google.com");
+        System.out.println(WdManager.get().getTitle());
         type(By.id("lst-ib"), "aaaaaaaa");
         click(By.name("btnK"));
         click(By.xpath("//a[text() = 'Video']"));
@@ -45,9 +45,9 @@ public class KibanaTest {
 
     @Test(description = "Test Facebook")
     public void testFacebook() {
-        WDManager.setWD(WDFactory.initBrowser(Browser.CHROME));
-        WDManager.getWD().get("https://facebook.com");
-        System.out.println(WDManager.getWD().getTitle());
+        WdManager.set(WDFactory.initBrowser(Browser.CHROME));
+        WdManager.get().get("https://facebook.com");
+        System.out.println(WdManager.get().getTitle());
         click(By.xpath("//div[@id='reg_pages_msg']/a"));
         click(By.xpath("//button"));
         type(By.xpath("//input[@type='text']"), "aaaaaaa");
@@ -58,18 +58,18 @@ public class KibanaTest {
 
     @Test(description = "Test Youtube")
     public void testYoutube() {
-        WDManager.setWD(WDFactory.initBrowser(Browser.FIREFOX));
-        WDManager.getWD().get("https://youtube.com");
-        System.out.println(WDManager.getWD().getTitle());
+        WdManager.set(WDFactory.initBrowser(Browser.FIREFOX));
+        WdManager.get().get("https://youtube.com");
+        System.out.println(WdManager.get().getTitle());
         type(By.cssSelector("input#search"), "aaaaaa");
         click(By.cssSelector("button#search-icon-legacy"));
     }
 
     @Test(description = "Test remote 1")
     public void testRemote() throws MalformedURLException {
-        WDManager.setWD(WDFactory.remote(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
-        WDManager.getWD().get("https://google.com");
-        System.out.println(WDManager.getWD().getTitle());
+        WdManager.set(WDFactory.remote(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
+        WdManager.get().get("https://google.com");
+        System.out.println(WdManager.get().getTitle());
         type(By.id("lst-ib"), "aaaaaaaa");
         click(By.name("btnK"));
         click(By.xpath("//a[text() = 'Video']"));
@@ -77,9 +77,9 @@ public class KibanaTest {
 
     @Test(description = "Test remote 2")
     public void testRemote2() throws MalformedURLException {
-        WDManager.setWD(WDFactory.remote(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
-        WDManager.getWD().get("https://facebook.com");
-        System.out.println(WDManager.getWD().getTitle());
+        WdManager.set(WDFactory.remote(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
+        WdManager.get().get("https://facebook.com");
+        System.out.println(WdManager.get().getTitle());
         click(By.xpath("//div[@id='reg_pages_msg']/a"));
         click(By.xpath("//button"));
         type(By.xpath("//input[@type='text']"), "aaaaaaa");
@@ -89,6 +89,6 @@ public class KibanaTest {
 
     @AfterMethod
     public void after() {
-        WDManager.dismissWD();
+        WdManager.dismissWD();
     }
 }
