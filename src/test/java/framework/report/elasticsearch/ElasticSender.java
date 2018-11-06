@@ -1,4 +1,4 @@
-package framework.report.senders;
+package framework.report.elasticsearch;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import framework.report.entities.TestResult;
+import framework.report.TestResult;
 
 public final class ElasticSender {
     //region CONFIG

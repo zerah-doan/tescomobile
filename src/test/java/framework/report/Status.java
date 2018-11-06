@@ -1,4 +1,4 @@
-package framework.report.enums;
+package framework.report;
 
 public enum Status {
     PASS,

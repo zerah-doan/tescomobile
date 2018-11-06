@@ -1,4 +1,6 @@
-package framework.report.entities;
+package framework.report.elasticsearch;
+
+import framework.report.TestResult;
 
 public class ResultManager {
     private static ThreadLocal<TestResult> resultThreadLocal = new ThreadLocal<>();
