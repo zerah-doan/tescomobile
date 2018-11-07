@@ -17,9 +17,8 @@ import org.testng.annotations.BeforeSuite;
 import java.lang.reflect.Method;
 
 public class BaseTest {
-    protected static ExtentReports extent;
-    protected static ThreadLocal<ExtentTest> test = new ThreadLocal();
 
+    //region Hooks
     @BeforeSuite
     public void beforeSuite() {
         ConfigUtil.loadEnvInfoToQueue();
@@ -44,9 +43,15 @@ public class BaseTest {
         WdManager.dismissWD();
     }
 
+    //endregion
+
+    //region Report
+    protected static ExtentReports extent;
+    protected static ThreadLocal<ExtentTest> test = new ThreadLocal();
+
     private void setUpReport() {
         //HTML
-        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("test-output\\report.html");
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);
         htmlReporter.config().setTheme(Theme.STANDARD);
@@ -63,7 +68,7 @@ public class BaseTest {
 
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter, klovReporter);
-
-
     }
+    //endregion
+
 }

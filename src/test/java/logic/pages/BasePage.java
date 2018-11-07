@@ -2,22 +2,15 @@ package logic.pages;
 
 import framework.wdm.WdManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
 
     public BasePage() {
-        driver = WdManager.get();
-        wait = WdManager.getWait();
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(WdManager.getAjaxEle(), this);
     }
-
 
     //region Useful actions
 
@@ -48,7 +41,7 @@ public class BasePage {
     }
 
     public void waitUntilElementVisible(WebElement ele) {
-        wait.until(ExpectedConditions.visibilityOf(ele));
+        WdManager.getWait().until(ExpectedConditions.visibilityOf(ele));
     }
 
     //endregion

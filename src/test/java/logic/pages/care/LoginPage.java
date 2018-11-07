@@ -22,6 +22,6 @@ public class LoginPage extends BasePage {
         txtUsername.sendKeys(username);
         txtPassword.sendKeys(password);
         btnOk.click();
-        //waitUntilElementVisible(btnFindNow);
+        waitUntilElementVisible(btnFindNow);
     }
 }
